@@ -4,15 +4,15 @@
 <ul class="list-group">
     @foreach (var round in Model.RoundViewModels)
     {
-        <li class="list-group-item container py-3 px-0">
+        <li class="list-group-item container py-3 px-0 round-list-item border border-dark border-2">
             <form method="post">
                 <button type="submit" asp-page-handler="OpenRound" asp-route-roundId="@round.Id" class="btn">
                     <div class="row">
                         <div class="col">
-                            <strong>@round.Title</strong>
+                            <strong class="text-light">@round.Title</strong>
                         </div>
                         <div class="col">
-                            <span>@round.DatePlayed.ToString("D", CultureInfo.CreateSpecificCulture("en-US"))</span>
+                            <span class="text-light">@round.DatePlayed.ToString("D", CultureInfo.CreateSpecificCulture("en-US"))</span>
                         </div>
                     </div>
                 </button>

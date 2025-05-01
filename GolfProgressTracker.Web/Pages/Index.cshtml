@@ -1,17 +1,38 @@
 ﻿@page
 @model IndexModel
 
-<div class="container text-center">
+@section Styles {
+    <style>
+        .round {
+            background: #374670;
+            height: 625px;
+        }
+
+        .round-list-item {
+            background: #474f66;
+        }
+
+        .top-parent {
+            height: 100vh;
+        }
+
+        body {
+            overflow: hidden;
+        }
+    </style>
+}
+
+<div class="container text-center top-parent">
     <div class="row text-start ms-4">
         <div class="col">
-            <a asp-page="AddRound" class="btn btn-secondary">Add Round</a>
+            <a asp-page="AddRound" class="btn btn-info">Add Round</a>
         </div>
     </div>
     <div class="row mt-2">
-        <div class="col-4">
+        <div class="col-4 border border-3 border-black rounded overflow-auto py-2 round">
             <partial name="~/Pages/Shared/_RoundListPartial.cshtml" model="Model.RoundListViewModel" />
         </div>
-        <div class="col-8">
+        <div class="col border border-3 border-black rounded overflow-auto round ms-2 py-3">
             @if (Model.RoundAndHolesViewModel is not null)
             {
                 <partial name="~/Pages/Shared/_RoundOverviewPartial.cshtml" model="Model.RoundAndHolesViewModel" />

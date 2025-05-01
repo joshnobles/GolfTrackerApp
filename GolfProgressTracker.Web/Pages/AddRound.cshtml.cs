@@ -14,6 +14,11 @@ namespace GolfProgressTracker.Web.Pages
 
         private static int HoleNumber = 1;
 
+        public void OnGet()
+        {
+            HoleNumber = 1;
+        }
+
         public void OnPostAddHole()
         {
             ModelState.Clear();
@@ -62,12 +67,16 @@ namespace GolfProgressTracker.Web.Pages
 
             if (AddRoundAndHolesViewModel.Holes.Count > 0)
                 AddRoundAndHolesViewModel.Holes.RemoveAt(AddRoundAndHolesViewModel.Holes.Count - 1);
+
+            HoleNumber--;
         }
 
         public void OnPostClearHoles()
         {
             ModelState.Clear();
             AddRoundAndHolesViewModel.Holes.Clear();
+
+            HoleNumber = 1;
         }
 
         public IActionResult OnPostSubmitRound()
@@ -108,10 +117,6 @@ namespace GolfProgressTracker.Web.Pages
                 TempData["Error"] = "An error occurred saving the new round";
                 transcation.Rollback();
                 return Page();
-            }
-            finally
-            {
-                HoleNumber = 1;
             }
         }
     }
