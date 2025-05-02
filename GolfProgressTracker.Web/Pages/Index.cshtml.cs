@@ -33,8 +33,11 @@ public class IndexModel(Context _context) : PageModel
             .Where(r => r.Id == roundId)
             .Select(r => new RoundAndHolesViewModel
             {
-                Title = r.Title,
-                DatePlayed = DateOnly.Parse(r.DatePlayed),
+                Round = new RoundViewModel
+                {
+                    Title = r.Title,
+                    DatePlayed = DateOnly.Parse(r.DatePlayed),
+                },
                 Holes = r.Holes.Select(h => new HoleViewModel
                 {
                     Number = h.Number,

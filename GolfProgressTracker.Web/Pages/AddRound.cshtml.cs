@@ -90,8 +90,8 @@ namespace GolfProgressTracker.Web.Pages
             {
                 var newRound = new Round
                 {
-                    Title = AddRoundAndHolesViewModel.Title,
-                    DatePlayed = AddRoundAndHolesViewModel.DatePlayed.ToString("o", CultureInfo.InvariantCulture)
+                    Title = AddRoundAndHolesViewModel.Round.Title,
+                    DatePlayed = AddRoundAndHolesViewModel.Round.DatePlayed.ToString("o", CultureInfo.InvariantCulture)
                 };
 
                 _context.Round.Add(newRound);

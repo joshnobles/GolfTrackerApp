@@ -1,0 +1,20 @@
+﻿@page
+@model GolfProgressTracker.Web.Pages.StatisticsModel
+
+<div class="container text-center">
+    <div class="row">
+        <div class="col">
+            <h1>Statistics</h1>
+        </div>
+    </div>
+    <div class="row mt-1 text-start">
+        <div class="col">
+            <a asp-page="Index" class="btn btn-info px-4">Back</a>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12">
+            <partial name="~/Pages/Shared/_StatisticsPartial.cshtml" model="Model.StatisticsViewModel" />
+        </div>
+    </div>
+</div>

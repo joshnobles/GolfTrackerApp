@@ -4,17 +4,17 @@
     <div class="row mt-2">
         <div class="col-8">
             <div class="form-floating">
-                <input asp-for="Title" class="form-control" placeholder=" " />
-                <label asp-for="Title">Title</label>
+                <input asp-for="Round.Title" class="form-control" placeholder=" " />
+                <label asp-for="Round.Title">Title</label>
             </div>
-            <span asp-validation-for="Title" class="text-danger"></span>
+            <span asp-validation-for="Round.Title" class="text-danger"></span>
         </div>
         <div class="col-4">
             <div class="form-floating">
-                <input asp-for="DatePlayed" type="date" class="form-control" placeholder=" " />
-                <label asp-for="DatePlayed">Date Played</label>
+                <input asp-for="Round.DatePlayed" type="date" class="form-control" placeholder=" " />
+                <label asp-for="Round.DatePlayed">Date Played</label>
             </div>
-            <span asp-validation-for="DatePlayed" class="text-danger"></span>
+            <span asp-validation-for="Round.DatePlayed" class="text-danger"></span>
         </div>
     </div>
     <div class="row container mt-3">
