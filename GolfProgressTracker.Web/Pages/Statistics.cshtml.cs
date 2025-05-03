@@ -20,6 +20,12 @@ namespace GolfProgressTracker.Web.Pages
             StatisticsViewModel = ConvertToStatisticsViewModel(rounds);
         }
 
+        public IActionResult OnGetStatisticsGraphData()
+        {
+            OnGet();
+            return new JsonResult(StatisticsViewModel.RoundGraphData);
+        }
+
         private StatisticsViewModel ConvertToStatisticsViewModel(List<Round> rounds)
         {
             var roundAndHolesViewModel = rounds

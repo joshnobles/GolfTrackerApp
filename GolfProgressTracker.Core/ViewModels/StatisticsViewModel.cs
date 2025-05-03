@@ -13,12 +13,14 @@ namespace GolfProgressTracker.Core.ViewModels
 
         public string FormatAsString(double score)
         {
+            string prefix = "";
+
             if (score > 0)
-                return "+" + score;
+                prefix = "+";
             else if (score < 0)
-                return "-" + score;
-            else
-                return "" + score;
+                prefix = "-";
+
+            return prefix + score;
         }
 
         public double Handicap
@@ -86,6 +88,8 @@ namespace GolfProgressTracker.Core.ViewModels
 
                     result.Scores.Add(score);
                 }
+
+                result.ParLine = new int[result.Scores.Count];
 
                 return result;
             }

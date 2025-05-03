@@ -5,5 +5,7 @@
         public List<string> TitlesAndDates { get; set; } = [];
 
         public List<int> Scores { get; set; } = [];
+
+        public int[] ParLine { get; set; } = [];
     }
 }
