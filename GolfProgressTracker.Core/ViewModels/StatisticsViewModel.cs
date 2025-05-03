@@ -25,32 +25,42 @@ namespace GolfProgressTracker.Core.ViewModels
         {
             get
             {
-                return GetAverage(h => false);
+                var roundScores = 0;
+                var totalRounds = 0;
+                int score;
+
+                foreach (var round in RoundsAndHoles)
+                {
+                    score = 0;
+                    foreach (var hole in round.Holes)
+                    {
+                        if (!hole.Shots.HasValue || !hole.Par.HasValue)
+                            continue;
+
+                        score += (int)hole.Shots - (int)hole.Par;
+                    }
+
+                    roundScores += score;
+                    totalRounds++;
+                }
+
+                return Math.Round((double) roundScores / totalRounds, 2);
             }
         }
     
         public double AverageParThreeScore
         {
-            get
-            {
-                return GetAverage(h => h.Par != 3);
-            }
+            get => GetAverage(h => h.Par != 3);
         }
 
         public double AverageParFourScore
         {
-            get
-            {
-                return GetAverage(h => h.Par != 4);
-            }
+            get => GetAverage(h => h.Par != 4);
         }
 
         public double AverageParFiveScore
         {
-            get
-            {
-                return GetAverage(h => h.Par != 5);
-            }
+            get => GetAverage(h => h.Par != 5);
         }
 
         public RoundScoresGraphViewModel RoundGraphData
