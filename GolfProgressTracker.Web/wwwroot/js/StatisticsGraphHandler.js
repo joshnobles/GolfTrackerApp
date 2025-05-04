@@ -1,32 +1,5 @@
-﻿const getGraphData = async () => {
-    const params = new URLSearchParams({ handler: 'StatisticsGraphData' });
-
-    try {
-        const response = await fetch(`?${params}`);
-
-        if (!response.ok)
-            throw new Error(response.status);
-
-        return await response.json();
-    }
-    catch (e) {
-        alert('An error occurred getting the graph data');
-        console.error(e);
-        return null;
-    }
-}
-
-const renderGraph = async () => {
-    const graphData = await getGraphData();
-
-    if (!graphData)
-        return;
-
-    const canvas = document
-        .getElementById('ScoreOverTimeChart')
-        .getContext('2d');
-
-    new Chart(canvas, {
+﻿const getGraphOptions = graphData => {
+    return {
         type: 'line',
         data: {
             labels: graphData.titlesAndDates,
@@ -35,15 +8,15 @@ const renderGraph = async () => {
                     label: 'Scores',
                     data: graphData.scores,
                     borderWidth: 3,
-                    borderColor: '#00FFFF',
+                    borderColor: '#00DDDD',
                     fill: false,
                     tension: 0.1
                 },
                 {
                     label: 'Par',
-                    data: graphData.parLine,
+                    data: graphData.titlesAndDates.map(_ => 0),
                     borderWidth: 3,
-                    borderColor: '#00AA00',
+                    borderColor: '#00DD00',
                     fill: false,
                     tension: 0.1,
                     pointRadius: 0,
@@ -71,7 +44,7 @@ const renderGraph = async () => {
                         color: '#000',
                         font: {
                             weight: 'bold',
-                            size: 12
+                            size: 14
                         }
                     },
                     min: -10,
@@ -91,7 +64,7 @@ const renderGraph = async () => {
                         color: '#000',
                         font: {
                             weight: 'bold',
-                            size: 12
+                            size: 14
                         }
                     },
                     ticks: {
@@ -103,7 +76,38 @@ const renderGraph = async () => {
                 }
             }
         }
-    });
+    }
+}
+
+const getGraphData = async () => {
+    const params = new URLSearchParams({ handler: 'StatisticsGraphData' });
+
+    try {
+        const response = await fetch(`?${params}`);
+
+        if (!response.ok)
+            throw new Error(response.status);
+
+        return await response.json();
+    }
+    catch (e) {
+        alert('An error occurred getting the graph data');
+        console.error(e);
+        return null;
+    }
+}
+
+const renderGraph = async () => {
+    const graphData = await getGraphData();
+
+    if (!graphData)
+        return;
+
+    const canvas = document
+        .querySelector('#ScoreOverTimeChart')
+        .getContext('2d');
+
+    new Chart(canvas, getGraphOptions(graphData));
 }
 
 renderGraph();

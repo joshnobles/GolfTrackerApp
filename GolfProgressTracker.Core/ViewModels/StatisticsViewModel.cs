@@ -89,8 +89,6 @@ namespace GolfProgressTracker.Core.ViewModels
                     result.Scores.Add(score);
                 }
 
-                result.ParLine = new int[result.Scores.Count];
-
                 return result;
             }
         }

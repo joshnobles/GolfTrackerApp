@@ -106,6 +106,46 @@
                 </div>
                 <div class="col-3"></div>
             </div>
+            <div class="row mt-3">
+                <div class="col-3"></div>
+                <div class="col">
+                    <strong>Holes:</strong>
+                </div>
+                <div class="col">
+                    <span>@Model.Holes.Count</span>
+                </div>
+                <div class="col-3"></div>
+            </div>
+            <div class="row mt-1">
+                <div class="col-3"></div>
+                <div class="col">
+                    <strong>Par 3:</strong>
+                </div>
+                <div class="col">
+                    <span>@Model.Holes.Count(h => h.Par == 3)</span>
+                </div>
+                <div class="col-3"></div>
+            </div>
+            <div class="row mt-1">
+                <div class="col-3"></div>
+                <div class="col">
+                    <strong>Par 4:</strong>
+                </div>
+                <div class="col">
+                    <span>@Model.Holes.Count(h => h.Par == 4)</span>
+                </div>
+                <div class="col-3"></div>
+            </div>
+            <div class="row mt-1">
+                <div class="col-3"></div>
+                <div class="col">
+                    <strong>Par 5:</strong>
+                </div>
+                <div class="col">
+                    <span>@Model.Holes.Count(h => h.Par == 5)</span>
+                </div>
+                <div class="col-3"></div>
+            </div>
         </div>
         <div class="col container">
             <div class="row">
@@ -162,6 +202,50 @@
                     <span>@Model.Holes.Count(h => h.Shots - h.Par == 2)</span>
                 </div>
                 <div class="col-3"></div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-2"></div>
+                <div class="col">
+                    <strong>Best Hole:</strong>
+                </div>
+                <div class="col">
+                    @{
+                        var bestHole = Model.Holes.MinBy(h => h.Shots - h.Par)!;
+                        var bestHolePrefix = "";
+                        var bestHoleScore = bestHole.Shots - bestHole.Par;
+
+                        if (bestHoleScore > 0)
+                            bestHolePrefix = "+";
+                        else if (bestHoleScore < 0)
+                            bestHolePrefix = "-";
+
+                        var bestHoleStr = bestHolePrefix + Math.Abs((int)bestHoleScore!);
+                    }
+                    <span>Hole @(bestHole.Number): @(bestHoleStr == "0" ? "Par" : bestHoleStr)</span>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <div class="row mt-1">
+                <div class="col-2"></div>
+                <div class="col">
+                    <strong>Worst Hole:</strong>
+                </div>
+                <div class="col">
+                    @{
+                        var worstHole = Model.Holes.MaxBy(h => h.Shots - h.Par)!;
+                        var worstHolePrefix = "";
+                        var worstHoleScore = worstHole.Shots - worstHole.Par;
+
+                        if (worstHoleScore > 0)
+                            worstHolePrefix = "+";
+                        else if (worstHoleScore < 0)
+                            worstHolePrefix = "-";
+
+                        var worstHoleStr = worstHolePrefix + Math.Abs((int)worstHoleScore!);
+                    }
+                    <span>Hole @(worstHole.Number): @(worstHoleStr == "0" ? "Par" : worstHoleStr)</span>
+                </div>
+                <div class="col-2"></div>
             </div>
         </div>
     </div>
