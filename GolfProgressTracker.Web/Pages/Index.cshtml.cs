@@ -6,8 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GolfProgressTracker.Web.Pages;
 
-public class IndexModel(Context _context) : PageModel
+public class IndexModel(Context context) : PageModel
 {
+    private readonly Context _context = context;
+
+
     public RoundListViewModel RoundListViewModel { get; set; } = new();
 
     public RoundAndHolesViewModel? RoundAndHolesViewModel { get; set; } = null;
@@ -49,5 +52,4 @@ public class IndexModel(Context _context) : PageModel
 
         OnGet();
     }
-
 }

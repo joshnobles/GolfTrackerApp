@@ -7,8 +7,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GolfProgressTracker.Web.Pages
 {
-    public class StatisticsModel(Context _context) : PageModel
+    public class StatisticsModel(Context context) : PageModel
     {
+        private readonly Context _context = context;
+
+
         public StatisticsViewModel StatisticsViewModel { get; set; } = null!;
 
         public void OnGet()

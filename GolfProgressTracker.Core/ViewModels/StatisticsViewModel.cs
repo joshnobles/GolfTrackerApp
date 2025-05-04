@@ -1,15 +1,8 @@
-﻿using System.Globalization;
-
-namespace GolfProgressTracker.Core.ViewModels
+﻿namespace GolfProgressTracker.Core.ViewModels
 {
-    public class StatisticsViewModel
+    public class StatisticsViewModel(List<RoundAndHolesViewModel> roundsAndHoles)
     {
-        public List<RoundAndHolesViewModel> RoundsAndHoles { get; set; }
-
-        public StatisticsViewModel(List<RoundAndHolesViewModel> roundsAndHoles)
-        {
-            RoundsAndHoles = roundsAndHoles;
-        }
+        private List<RoundAndHolesViewModel> RoundsAndHoles { get; set; } = roundsAndHoles;
 
         public double Handicap
         {

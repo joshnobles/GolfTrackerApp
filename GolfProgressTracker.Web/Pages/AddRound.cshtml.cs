@@ -7,8 +7,11 @@ using System.Globalization;
 
 namespace GolfProgressTracker.Web.Pages
 {
-    public class AddRoundModel(Context _context) : PageModel
+    public class AddRoundModel(Context context) : PageModel
     {
+        private readonly Context _context = context;
+
+
         [BindProperty]
         public RoundAndHolesViewModel AddRoundAndHolesViewModel { get; set; } = new();
 
