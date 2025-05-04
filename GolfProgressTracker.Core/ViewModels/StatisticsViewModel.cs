@@ -11,18 +11,6 @@ namespace GolfProgressTracker.Core.ViewModels
             RoundsAndHoles = roundsAndHoles;
         }
 
-        public string FormatAsString(double score)
-        {
-            string prefix = "";
-
-            if (score > 0)
-                prefix = "+";
-            else if (score < 0)
-                prefix = "-";
-
-            return prefix + score;
-        }
-
         public double Handicap
         {
             get
@@ -91,6 +79,29 @@ namespace GolfProgressTracker.Core.ViewModels
 
                 return result;
             }
+        }
+
+        public string FormatAsString(string key)
+        {
+            var property = GetType()
+                .GetProperties()
+                .FirstOrDefault(p => p.Name.Equals(key))
+                ?? throw new KeyNotFoundException($"Property not found: {key}");
+
+            var scoreObj = property
+                .GetValue(this)
+                ?? throw new KeyNotFoundException($"Property not found: {key}");
+
+            var score = Convert.ToDouble(scoreObj);
+
+            string prefix = "";
+
+            if (score > 0)
+                prefix = "+";
+            else if (score < 0)
+                prefix = "-";
+
+            return prefix + Math.Abs(score);
         }
 
         private double GetAverage(Func<HoleViewModel, bool> continueCondition)

@@ -6,7 +6,7 @@
             <strong>Handicap:</strong>
         </div>
         <div class="col-auto">
-            <span>@Model.FormatAsString(Model.Handicap)</span>
+            <span>@Model.FormatAsString(nameof(Model.Handicap))</span>
         </div>
     </div>
     <div class="row mt-2">
@@ -14,7 +14,7 @@
             <strong>Par 3 Score:</strong>
         </div>
         <div class="col-auto">
-            <span>@Model.FormatAsString(Model.AverageParThreeScore)</span>
+            <span>@Model.FormatAsString(nameof(Model.AverageParThreeScore))</span>
         </div>
     </div>
     <div class="row mt-2">
@@ -22,7 +22,7 @@
             <strong>Par 4 Score:</strong>
         </div>
         <div class="col-auto">
-            <span>@Model.FormatAsString(Model.AverageParFourScore)</span>
+            <span>@Model.FormatAsString(nameof(Model.AverageParFourScore))</span>
         </div>
     </div>
     <div class="row mt-2">
@@ -30,7 +30,7 @@
             <strong>Par 5 Score:</strong>
         </div>
         <div class="col-auto">
-            <span>@Model.FormatAsString(Model.AverageParFiveScore)</span>
+            <span>@Model.FormatAsString(nameof(Model.AverageParFiveScore))</span>
         </div>
     </div>
     <div class="row mt-3">
