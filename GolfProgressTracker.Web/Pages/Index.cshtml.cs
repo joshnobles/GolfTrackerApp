@@ -38,6 +38,7 @@ public class IndexModel(Context context) : PageModel
             {
                 Round = new RoundViewModel
                 {
+                    Id = r.Id,
                     Title = r.Title,
                     DatePlayed = DateOnly.Parse(r.DatePlayed),
                 },
@@ -49,6 +50,28 @@ public class IndexModel(Context context) : PageModel
                 }).ToList()
             })
             .FirstOrDefault();
+
+        OnGet();
+    }
+
+    public void OnPostDeleteRound([FromQuery] int roundId)
+    {
+        var round = _context.Round
+            .Include(r => r.Holes)
+            .FirstOrDefault(r => r.Id == roundId);
+
+        if (round is null)
+        {
+            TempData["Error"] = "Could not identify round to delete";
+            OnGet();
+            return;
+        }
+
+        _context.Round.Remove(round);
+        _context.Hole.RemoveRange(round.Holes);        
+        _context.SaveChanges();
+
+        TempData["Success"] = "Successfully deleted round";
 
         OnGet();
     }

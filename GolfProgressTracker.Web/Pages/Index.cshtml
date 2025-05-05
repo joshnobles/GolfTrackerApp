@@ -2,24 +2,20 @@
 @model IndexModel
 
 @section Styles {
-    <style>
-        .round {
-            background: #374670;
-            height: 625px;
-        }
+<style>
+    .round {
+    background: #374670;
+    height: 625px;
+    }
 
-        .round-list-item {
-            background: #474f66;
-        }
+    .round-list-item {
+    background: #474f66;
+    }
 
-        .top-parent {
-            height: 100vh;
-        }
-
-        body {
-            overflow: hidden;
-        }
-    </style>
+    .top-parent {
+    height: 100vh;
+    }
+</style>
 }
 
 <div class="container text-center top-parent">
@@ -30,6 +26,22 @@
         <div class="col-auto">
             <a asp-page="Statistics" class="btn btn-info">Statistics</a>
         </div>
+        @if (TempData["Error"] is not null)
+        {
+            <div class="col-auto h-auto">
+                <div class="alert alert-danger" role="alert">
+                    <span>@TempData["Error"]</span>
+                </div>
+            </div>
+        }
+        @if (TempData["Success"] is not null)
+        {
+            <div class="col-auto">
+                <div class="alert alert-success" role="alert">
+                    <span>@TempData["Success"]</span>
+                </div>
+            </div>
+        }
     </div>
     <div class="row mt-2">
         <div class="col-4 border border-3 border-black rounded overflow-auto py-2 round">
