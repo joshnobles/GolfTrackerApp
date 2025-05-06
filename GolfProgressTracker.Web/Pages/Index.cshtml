@@ -4,16 +4,16 @@
 @section Styles {
 <style>
     .round {
-    background: #374670;
-    height: 625px;
+        background: #374670;
+        height: 625px;
     }
 
     .round-list-item {
-    background: #474f66;
+        background: #474f66;
     }
 
     .top-parent {
-    height: 100vh;
+        height: 100vh;
     }
 </style>
 }
@@ -26,23 +26,17 @@
         <div class="col-auto">
             <a asp-page="Statistics" class="btn btn-info">Statistics</a>
         </div>
-        @if (TempData["Error"] is not null)
-        {
-            <div class="col-auto h-auto">
-                <div class="alert alert-danger" role="alert">
-                    <span>@TempData["Error"]</span>
-                </div>
-            </div>
-        }
-        @if (TempData["Success"] is not null)
-        {
-            <div class="col-auto">
-                <div class="alert alert-success" role="alert">
-                    <span>@TempData["Success"]</span>
-                </div>
-            </div>
-        }
     </div>
+    @if (TempData["Error"] is not null || TempData["Success"] is not null)
+    {
+        <div class="row my-2">
+            <div class="col">
+                <div class="alert @(TempData["Error"] is null ? "alert-success" : "alert-danger")">
+                    <span>@(TempData["Error"] is null ? TempData["Success"] : TempData["Error"])</span>
+                </div>
+            </div>
+        </div>
+    }
     <div class="row mt-2">
         <div class="col-4 border border-3 border-black rounded overflow-auto py-2 round">
             <partial name="~/Pages/Shared/_RoundListPartial.cshtml" model="Model.RoundListViewModel" />

@@ -11,10 +11,13 @@
         </div>
     </div>
     <div class="row text-start ms-5">
-        <div class="col">
+        <div class="col-auto">
             <form method="post">
                 <input type="submit" class="btn btn-danger" asp-page-handler="DeleteRound" asp-route-roundId="@Model.Round.Id" value="Delete Round" />
             </form>
+        </div>
+        <div class="col-auto">
+            <a asp-page="EditRound" asp-route-RoundId="@Model.Round.Id" class="btn btn-info">Edit Round</a>
         </div>
     </div>
     <div class="row mt-2">
