@@ -5,7 +5,7 @@
             labels: graphData.titlesAndDates,
             datasets: [
                 {
-                    label: 'Scores',
+                    label: 'Score',
                     data: graphData.scores,
                     borderWidth: 3,
                     borderColor: '#00DDDD',

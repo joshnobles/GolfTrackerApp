@@ -87,14 +87,10 @@
 
             var score = Convert.ToDouble(scoreObj);
 
-            string prefix = "";
+            if (score < 0)
+                return "+" + Math.Abs(score);
 
-            if (score > 0)
-                prefix = "+";
-            else if (score < 0)
-                prefix = "-";
-
-            return prefix + Math.Abs(score);
+            return Math.Abs(score) + "";
         }
 
         private double GetAverage(Func<HoleViewModel, bool> continueCondition)
